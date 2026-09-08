@@ -1,86 +1,105 @@
 # Customer Churn Prediction
 
-AI/ML practical test project for predicting whether a customer is likely to churn based on customer information and service usage data.
-
-## Objective
-
-Build a classification model to predict customer churn and compare different machine learning approaches.
+This project explores customer data and compares classification models for predicting whether a customer will churn.
 
 ## Dataset
 
-The dataset contains 64,374 customer records with information such as:
+The notebook uses `customer_churn_dataset-testing-master.csv`, which contains 64,374 customer records.
 
-* Age
-* Gender
-* Tenure
-* Usage Frequency
-* Support Calls
-* Payment Delay
-* Subscription Type
-* Contract Length
-* Total Spend
-* Last Interaction
+The available fields are:
 
-The target variable is `Churn`:
+- `CustomerID`
+- `Age`
+- `Gender`
+- `Tenure`
+- `Usage Frequency`
+- `Support Calls`
+- `Payment Delay`
+- `Subscription Type`
+- `Contract Length`
+- `Total Spend`
+- `Last Interaction`
+- `Churn`
 
-* `0` – Not Churned
-* `1` – Churned
+`Churn` is the target variable:
 
-`CustomerID` is excluded from model training as it is an identifier.
+- `0`: No churn
+- `1`: Churn
 
-## Approach
+`CustomerID` is removed before model training because it is an identifier.
 
-The notebook covers:
+## Notebook Workflow
 
-1. Dataset loading and exploration
-2. Data quality checking
-3. Basic exploratory data analysis
-4. Churn-related visualizations
-5. Categorical feature encoding
-6. Numerical feature preprocessing
-7. Train-test split
-8. Training multiple classification models
-9. Model evaluation using:
+The notebook includes:
 
-   * Accuracy
-   * Precision
-   * Recall
-   * F1 Score
-   * Confusion Matrix
-10. Model comparison and selection
-11. Customer churn prediction
-12. Churn probability estimation
+1. Loading and inspecting the dataset
+2. Checking missing values and duplicate rows
+3. Reviewing descriptive statistics and target distribution
+4. Replacing negative numeric values with missing values
+5. Exploratory visualizations for:
+   - Contract length and churn
+   - Tenure and churn
+   - Subscription type and churn
+   - Total spend and churn
+6. Comparing numerical feature means by churn class
+7. Separating features from the target
+8. Splitting the data into training and testing sets
+9. Encoding categorical features with one-hot encoding
+10. Imputing missing values and scaling numerical features
+11. Training and evaluating three classification models
+12. Comparing model performance by F1 score
 
-## Machine Learning Models
+## Models
 
-The following classification models are compared:
+The following models are evaluated:
 
-* Logistic Regression
-* Decision Tree
-* Random Forest
+- Logistic Regression
+- Decision Tree
+- Random Forest
 
-## Results
+## Evaluation
 
-The notebook contains the complete model evaluation, comparison, visualizations, observations, and prediction results.
+Each model is evaluated using:
+
+- Accuracy
+- Precision
+- Recall
+- F1 score
+- Classification report
+- Confusion matrix
+
+The model comparison table is sorted by F1 score in descending order.
+
+## Tools Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
 
 ## Project Structure
 
 ```text
-customer-churn-prediction/
-├── customer_churn.csv
-├── Customer_Churn_Prediction.ipynb
+semicolon/
+├── churn_model.ipynb
+├── churnmodel.py
+├── customer_churn_dataset-testing-master.csv
+├── requirements.txt
 └── README.md
 ```
 
 ## How to Run
 
-Open `Customer_Churn_Prediction.ipynb` using Jupyter Notebook, JupyterLab, or Google Colab and run the cells sequentially.
+Install the required packages:
 
-## Tools Used
+```bash
+pip install -r requirements.txt
+```
 
-* Python
-* Pandas
-* NumPy
-* Scikit-learn
-* Matplotlib
-* Seaborn
+Open `churn_model.ipynb` in Jupyter Notebook, JupyterLab, or Google Colab and run the cells in order. When using Google Colab, upload `customer_churn_dataset-testing-master.csv` when prompted.
+
+Before running the notebook, correct the malformed `sklearn.metrics` import in the imports cell so that it uses the metric names listed in the notebook.
+
+The standalone `churnmodel.py` file contains the dataset loading and initial inspection steps for a file named `customer_churn.csv`.
